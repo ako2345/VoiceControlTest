@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,7 +31,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Surface
 import androidx.tv.material3.Text
-import androidx.wear.compose.material.Icon
 import com.example.voicecontroltest.extensions.onClickToast
 import com.example.voicecontroltest.ui.theme.PurpleGrey40
 import com.example.voicecontroltest.ui.theme.VoiceControlTestTheme
