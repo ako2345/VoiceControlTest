@@ -123,11 +123,9 @@ fun BoxButtonWithSemantics(
     Box(
         modifier = modifier
             .clickable(onClick = onClick)
-            .focusable(enabled = true)
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .semantics {
                 contentDescription = label
-                role = Role.Button
             }
     ) {
         Text(
