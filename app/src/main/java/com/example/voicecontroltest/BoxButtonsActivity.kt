@@ -56,6 +56,7 @@ class BoxButtonsActivity : ComponentActivity() {
                         Text("Кнопки без semantics")
                         BoxButtonDisplayingToast("Описание", modifier)
                         BoxButtonDisplayingToast("Трейлер", modifier)
+                        BoxButtonDisplayingToast("Продолжить", modifier)
                         Spacer(modifier = Modifier.height(16.dp))
 
                         Text("Кнопки с semantics")
