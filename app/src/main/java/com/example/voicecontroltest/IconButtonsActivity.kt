@@ -1,5 +1,7 @@
 package com.example.voicecontroltest
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -79,6 +81,10 @@ class IconButtonsActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    fun handleVoiceCommand(intent: Intent) {
+        onActivityResult(1001, RESULT_OK, intent)
     }
 }
 
