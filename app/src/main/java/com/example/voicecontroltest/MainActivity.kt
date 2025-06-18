@@ -30,10 +30,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             VoiceControlTestTheme {
                 Surface(
+                    shape = RectangleShape,
                     modifier = Modifier
                         .padding(32.dp)
-                        .fillMaxSize(),
-                    shape = RectangleShape
+                        .fillMaxSize()
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                         Text("Тестирование голосового управления")
@@ -55,6 +55,17 @@ class MainActivity : ComponentActivity() {
                                     Intent(
                                         this@MainActivity,
                                         BoxButtonsActivity::class.java
+                                    )
+                                )
+                            }
+                        )
+                        SectionButton(
+                            label = "Кнопки с меняющимся текстом",
+                            onClick = {
+                                startActivity(
+                                    Intent(
+                                        this@MainActivity,
+                                        BoxButtonsWithChangingTextActivity::class.java
                                     )
                                 )
                             }
