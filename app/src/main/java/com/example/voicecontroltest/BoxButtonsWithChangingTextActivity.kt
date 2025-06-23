@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
@@ -43,9 +46,11 @@ class BoxButtonsWithChangingTextActivity : ComponentActivity() {
                         .fillMaxSize(),
                     shape = RectangleShape
                 ) {
+                    val focusRequester = remember { FocusRequester() }
+
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                         Text("Кнопки с меняющимся текстом")
-                        BoxButtonWithChangingText("Описание", "Убрать", {})
+                        BoxButtonWithChangingText("Описание", "Убрать", {}, focusRequester)
                         Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
@@ -59,7 +64,8 @@ class BoxButtonsWithChangingTextActivity : ComponentActivity() {
 fun BoxButtonWithChangingText(
     labelDefault: String,
     labelPressed: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    focusRequester: FocusRequester
 ) {
     var isPressed by remember { mutableStateOf(false) }
     val backgroundColor = if (isPressed) Purple40 else Color.White
@@ -69,10 +75,12 @@ fun BoxButtonWithChangingText(
     Box(
         modifier = Modifier
             .background(backgroundColor, shape = RoundedCornerShape(8.dp))
+            .focusRequester(focusRequester)
+            .focusable()
             .clickable {
-                context.onClickToast(buttonText)
                 isPressed = !isPressed
-                onClick
+                context.onClickToast(buttonText)
+                onClick()
             }
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
