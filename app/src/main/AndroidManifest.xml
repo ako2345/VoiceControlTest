@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".XmlButtonsActivity" />
         <activity android:name=".BoxButtonsActivity" />
         <activity android:name=".BoxButtonsWithChangingTextActivity" />
         <activity android:name=".IconButtonsActivity" />
