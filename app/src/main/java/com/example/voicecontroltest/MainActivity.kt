@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,8 +14,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,6 +29,7 @@ import androidx.tv.material3.Text
 import com.example.voicecontroltest.ui.theme.PurpleGrey40
 import com.example.voicecontroltest.ui.theme.VoiceControlTestTheme
 import com.example.voicecontroltest.ui.theme.White
+import com.example.voicecontroltest.ui.theme.Yellow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,13 +101,20 @@ fun SectionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var isFocused by remember { mutableStateOf(false) }
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
-            .background(color = PurpleGrey40)
+            .onFocusChanged { focusState -> isFocused = focusState.isFocused }
+            .background(if (isFocused) Yellow else PurpleGrey40)
+            .focusable()
             .clickable(onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        Text(text = label, color = White, fontSize = 18.sp)
+        Text(
+            text = label,
+            color = White,
+            fontSize = 18.sp
+        )
     }
 }
