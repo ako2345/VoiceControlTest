@@ -20,9 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -30,10 +29,12 @@ import androidx.compose.ui.unit.sp
 import androidx.tv.material3.Surface
 import androidx.tv.material3.Text
 import com.example.voicecontroltest.extensions.onClickToast
+import com.example.voicecontroltest.ui.theme.GreyLight
 import com.example.voicecontroltest.ui.theme.Purple40
 import com.example.voicecontroltest.ui.theme.PurpleGrey40
 import com.example.voicecontroltest.ui.theme.VoiceControlTestTheme
 import com.example.voicecontroltest.ui.theme.White
+import com.example.voicecontroltest.ui.theme.Yellow
 
 class BoxButtonsWithChangingTextActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +47,10 @@ class BoxButtonsWithChangingTextActivity : ComponentActivity() {
                         .fillMaxSize(),
                     shape = RectangleShape
                 ) {
-                    val focusRequester = remember { FocusRequester() }
-
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                         Text("Кнопки с меняющимся текстом")
-                        BoxButtonWithChangingText("Описание", "Убрать", {}, focusRequester)
+                        BoxButtonWithChangingText("Описание", "Убрать", {})
+                        BoxButtonWithChangingText("Фильм", "Сериал", {})
                         Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
@@ -64,18 +64,18 @@ class BoxButtonsWithChangingTextActivity : ComponentActivity() {
 fun BoxButtonWithChangingText(
     labelDefault: String,
     labelPressed: String,
-    onClick: () -> Unit,
-    focusRequester: FocusRequester
+    onClick: () -> Unit
 ) {
+    var isFocused by remember { mutableStateOf(false) }
     var isPressed by remember { mutableStateOf(false) }
-    val backgroundColor = if (isPressed) Purple40 else Color.White
-    val textColor = if (isPressed) White else PurpleGrey40
+    val textColor = if (isPressed) GreyLight else White
     val buttonText = if (isPressed) labelPressed else labelDefault
     val context = LocalContext.current
     Box(
         modifier = Modifier
-            .background(backgroundColor, shape = RoundedCornerShape(8.dp))
-            .focusRequester(focusRequester)
+            .onFocusChanged { focusState -> isFocused = focusState.isFocused }
+            .clip(RoundedCornerShape(8.dp))
+            .background(if (isFocused) Yellow else if (isPressed) PurpleGrey40 else Purple40)
             .focusable()
             .clickable {
                 isPressed = !isPressed
