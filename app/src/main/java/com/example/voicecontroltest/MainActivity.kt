@@ -45,12 +45,23 @@ class MainActivity : ComponentActivity() {
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                         Text("Тестирование голосового управления")
                         SectionButton(
-                            label = "Кнопки в XML",
+                            label = "Кнопки в XML (без Compose)",
                             onClick = {
                                 startActivity(
                                     Intent(
                                         this@MainActivity,
                                         XmlButtonsActivity::class.java
+                                    )
+                                )
+                            }
+                        )
+                        SectionButton(
+                            label = "Кнопки в XML (в AndroidView)",
+                            onClick = {
+                                startActivity(
+                                    Intent(
+                                        this@MainActivity,
+                                        AndroidViewButtonsActivity::class.java
                                     )
                                 )
                             }

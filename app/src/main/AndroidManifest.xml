@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".XmlButtonsActivity" />
+        <activity android:name=".AndroidViewButtonsActivity" />
         <activity android:name=".BoxButtonsActivity" />
         <activity android:name=".BoxButtonsWithChangingTextActivity" />
         <activity android:name=".IconButtonsActivity" />
