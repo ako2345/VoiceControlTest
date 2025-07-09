@@ -42,12 +42,13 @@ class BoxButtonsWithChangingTextActivity : ComponentActivity() {
         setContent {
             VoiceControlTestTheme {
                 Surface(
-                    modifier = Modifier
-                        .padding(32.dp)
-                        .fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     shape = RectangleShape
                 ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(
+                        modifier = Modifier.padding(32.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
                         Text("Кнопки с меняющимся текстом")
                         BoxButtonWithChangingText("Описание", "Убрать", {})
                         BoxButtonWithChangingText("Фильм", "Сериал", {})

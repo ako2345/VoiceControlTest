@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,9 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,9 +35,7 @@ class BoxButtonsActivity : ComponentActivity() {
         setContent {
             VoiceControlTestTheme {
                 Surface(
-                    modifier = Modifier
-                        .padding(32.dp)
-                        .fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     shape = RectangleShape
                 ) {
                     var modifier = Modifier
@@ -52,7 +47,10 @@ class BoxButtonsActivity : ComponentActivity() {
                             shape = RoundedCornerShape(8.dp)
                         )
 
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(
+                        modifier = Modifier.padding(32.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
                         Text("Кнопки без semantics")
                         BoxButtonDisplayingToast("Описание", modifier)
                         BoxButtonDisplayingToast("Трейлер", modifier)

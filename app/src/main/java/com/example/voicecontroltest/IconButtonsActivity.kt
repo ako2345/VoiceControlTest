@@ -41,12 +41,13 @@ class IconButtonsActivity : ComponentActivity() {
         setContent {
             VoiceControlTestTheme {
                 Surface(
-                    modifier = Modifier
-                        .padding(32.dp)
-                        .fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     shape = RectangleShape
                 ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(
+                        modifier = Modifier.padding(32.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
                         Text("Кнопка без contentDescription и semantics")
                         IconButton(
                             imageId = R.drawable.ic_settings,

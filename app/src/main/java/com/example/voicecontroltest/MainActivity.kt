@@ -38,11 +38,12 @@ class MainActivity : ComponentActivity() {
             VoiceControlTestTheme {
                 Surface(
                     shape = RectangleShape,
-                    modifier = Modifier
-                        .padding(32.dp)
-                        .fillMaxSize()
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(
+                        modifier = Modifier.padding(32.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
                         Text("Тестирование голосового управления")
                         SectionButton(
                             label = "Кнопки в XML (без Compose)",
