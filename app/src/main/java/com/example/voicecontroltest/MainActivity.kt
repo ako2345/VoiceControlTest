@@ -100,6 +100,17 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         )
+                        SectionButton(
+                            label = "Кнопки с меняющимся состоянием",
+                            onClick = {
+                                startActivity(
+                                    Intent(
+                                        this@MainActivity,
+                                        ButtonsWithChangingStateActivity::class.java
+                                    )
+                                )
+                            }
+                        )
                     }
                 }
             }

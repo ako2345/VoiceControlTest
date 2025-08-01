@@ -30,6 +30,7 @@
         <activity android:name=".BoxButtonsActivity" />
         <activity android:name=".BoxButtonsWithChangingTextActivity" />
         <activity android:name=".IconButtonsActivity" />
+        <activity android:name=".ButtonsWithChangingStateActivity" />
     </application>
 
 </manifest>
